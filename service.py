@@ -41,7 +41,10 @@ def process_event(event):
     print(event)
     
     import urllib
-    current_url = 'http://192.168.1.44/command.php?qry=%s' % event
+    current_url = 'http://192.168.1.44/command.php?qry=%s' % urllib.quote(event)
+    # Ниже из примера по кодировке
+    #current_url = 'http://192.168.1.44/command.php?qry=%s' + urllib.quote(event)
+    
     urllib.urlopen(current_url) 
 
     if (event.type == EventType.ON_CONVERSATION_TURN_FINISHED and
